@@ -1,0 +1,15 @@
+if test -d ./wp-content
+        then
+		chown -R www-data *
+		chgrp -R webms *
+		chmod 464 -R *
+		find -type d -print0|xargs -0 chmod 575
+		chmod 775 wp-content
+		chmod 664 ./wp-content/* -R
+		find ./wp-content/ -type d -print0|xargs -0 chmod 775
+		chown root wp-config.php
+		chmod 464 wp-config.php
+		echo "done"
+	else echo "you must start this script from the root of a wordpress directory."
+fi
+
